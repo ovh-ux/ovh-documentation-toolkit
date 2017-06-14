@@ -5,7 +5,6 @@
   "license": "BSD-3-Clause",
   "main": "dist/ovh-documentation-toolkit.js",
   "module": "src/app/index.js",
-    "url-loader": "^0.5.7",
   "scripts": {
     "build": "rimraf dist && webpack --progress --colors --hide-modules --config ./build/webpack.config.babel.js",
     "build:watch": "rimraf dist && webpack --progress --colors --hide-modules --config ./build/webpack.config.babel.js --watch"
