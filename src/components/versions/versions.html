@@ -1,0 +1,8 @@
+<label class="oui-select">
+  <select class="oui-select__input"
+          data-ng-model="$ctrl.selectedVersion"
+          data-ng-options="version.id as version.name for version in $ctrl.versions"
+          data-ng-change="$ctrl.onVersionChanged($ctrl.selectedVersion)">
+  </select>
+  <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
+</label>

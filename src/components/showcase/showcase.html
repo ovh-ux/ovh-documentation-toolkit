@@ -1,0 +1,48 @@
+<section>
+    <header class="oui-theme-sapphire">
+        <nav class="oui-navbar oui-showcase__navbar" role="navigation">
+            <a class="oui-navbar__title-link" href="#">
+                <h1 class="oui-navbar__title">
+                    <i class="oui-icon oui-icon-ovh"></i>
+                    <span class="oui-navbar__title-bold">OVH</span>
+                    <span class="oui-navbar__title-small">UIKit</span>
+                </h1>
+            </a>
+            <button type="button" class="oui-showcase__control" data-ng-click="$ctrl.toggle = !$ctrl.toggle">Menu</button>
+            <ul class="oui-navbar__items" data-ng-class="{'open': $ctrl.toggle}">
+                <li class="oui-navbar__item" data-ng-repeat="child in $ctrl.rootChildren track by child.state" data-ui-sref-active="oui-navbar__item_current">
+                    <button type="button" class="oui-navbar__link" data-ng-click="$ctrl.onListItemClick(child.state)" data-ng-bind="child.name"></button>
+                </li>
+                <li class="oui-navbar__item">
+                    <versions-selector></versions-selector>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <content class="oui-showcase__main">
+        <div class="oui-showcase__content">
+            <nav class="oui-theme-sapphire oui-list oui-list_nav oui-showcase__sidenav" role="complementary" data-ng-class="{'open': $ctrl.toggle}">
+                <ul class="oui-list__items">
+                    <li class="oui-list__items oui-list__items_group">
+                        <span class="oui-list__header" data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].name"></span>
+                        <ul class="oui-list__items">
+                            <li class="oui-list__item"
+                                data-ng-repeat="child in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].children track by child.state"
+                                data-ui-sref-active="oui-list__item_current">
+                                <button type="button" class="oui-list__link" data-ng-click="$ctrl.onListItemClick(child.state)" data-ng-bind="child.name"></button>
+                            </li>
+                            <li class="oui-list__item" data-ng-if="!$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].children.length">
+                                No children state found under the state {{ $ctrl.currentSecondLevelStateName }}.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="oui-showcase__section">
+                <themes-selector class="oui-showcase__theme-selector" on-change="$ctrl.theme = $event.value"></themes-selector>
+                <ui-view data-ng-class="$ctrl.theme"></ui-view>
+            </div>
+        </div>
+    </content>
+</section>
