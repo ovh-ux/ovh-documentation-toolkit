@@ -1,3 +1,5 @@
+import { snakeCase } from 'lodash'
+
 export default class {
   constructor ($window, Versions) {
     'ngInject'
@@ -8,14 +10,11 @@ export default class {
     Versions.getVersions()
       .then((versions) => {
         this.versions = versions.map((version) => {
-          if (version === 'latest' && version === this.currentVersion && Versions.currentVersion) {
-            return {
-              name: `${version} (${Versions.currentVersion})`,
-              id: version
-            }
+          if (version === 'latest') {
+            return { name: 'latest', id: 'master' }
           }
 
-          return { name: version, id: version }
+          return { name: version, id: snakeCase(version) }
         })
       })
 
