@@ -21,4 +21,4 @@ const app = angular
 
 ## Contribute
 
-Please refer to [CONTRIBUTE](CONTRIBUTE.md).
+Please refer to [CONTRIBUTING](CONTRIBUTING.md).
