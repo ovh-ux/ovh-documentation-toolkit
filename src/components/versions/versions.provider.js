@@ -1,59 +1,87 @@
-import {
-  isEmpty,
-  last,
-  initial
-} from 'lodash'
+import { snakeCase } from 'lodash'
 
 class VersionsService {
-  constructor ($location, $http, currentVersion) {
+  constructor ($location, $q, $http, currentVersion) {
     'ngInject'
 
     this.$location = $location
+    this.$q = $q
     this.$http = $http
     this.currentVersion = currentVersion
   }
 
   getInformations (clientUrl = this.$location.absUrl()) {
-    var clientUrlSplit = clientUrl.split('#')
-    var leftPartSplit = clientUrlSplit[0].split('/')
+    const PROD_REGEX = /https?:\/\/(dev_)?([\w\-_]+)\.ui-kit\.ovh/
 
-    if (isEmpty(last(leftPartSplit))) {
-      leftPartSplit = initial(leftPartSplit)
+    let branch = 'local'
+    let environment = 'localhost'
+    let version = 'local'
+    let params = ''
+    const matches = PROD_REGEX.exec(clientUrl)
+    const splitUrl = clientUrl.split('#')
+
+    if (matches && matches.length === 3) {
+      environment = matches[1] === 'dev_' ? 'dev' : 'prod'
+      branch = matches[2]
+      version = branch === 'master' ? 'latest' : branch
     }
 
-    var version = 'latest'
-
-    if (leftPartSplit.length > 3) {
-      version = last(leftPartSplit)
-      leftPartSplit = initial(leftPartSplit)
+    if (splitUrl.length === 2) {
+      params = `#${splitUrl[1]}`
     }
 
     return {
-      rightPart: clientUrlSplit.length === 2 ? `#${clientUrlSplit[1]}` : null,
-      leftPartWithoutVersion: leftPartSplit.join('/'),
-      leftPartWithVersion: clientUrlSplit[0],
-      version: version
+      branch,
+      environment,
+      version,
+      params
+    }
+  }
+
+  getUrl (environment, branch, path = '') {
+    switch (environment) {
+      case 'dev':
+        return `http://dev_${branch}.ui-kit.ovh${path}`
+      case 'prod':
+        return `http://${branch}.ui-kit.ovh${path}`
+      default:
+        const port = this.$location.port()
+
+        return `http://localhost:${port}${path}`
     }
   }
 
   getNewVersionUrl (newVersion, clientUrl = this.$location.absUrl()) {
-    var informations = this.getInformations(clientUrl)
+    const informations = this.getInformations(clientUrl)
+    const newVersionFormatted = newVersion === 'latest' ? 'master' : snakeCase(newVersion)
 
-    var leftPart = informations.leftPartWithVersion.replace(informations.version, newVersion)
-
-    if (informations.rightPart) {
-      return leftPart + informations.rightPart
-    }
-
-    return leftPart
+    return this.getUrl(informations.environment, newVersionFormatted, informations.params)
   }
 
   getVersions () {
-    var informations = this.getInformations()
+    const informations = this.getInformations()
 
-    return this.$http.get(`${informations.leftPartWithoutVersion}/versions.json`)
+    if (informations.environment === 'localhost') {
+      return this.$q.resolve(['local'])
+    }
+
+    const versionUrl = this.getUrl(informations.environment, 'master', '/versions.json')
+
+    return this.$http.get(versionUrl)
       .then((result) => {
         return result.data
+      })
+      .then((versions) => {
+        const formattedVersions = versions.map(snakeCase)
+
+        if (formattedVersions.includes(informations.version)) {
+          return versions
+        }
+
+        return [
+          informations.version,
+          ...versions
+        ]
       })
   }
 }
@@ -67,8 +95,8 @@ export default class {
     this.currentVersion = version
   }
 
-  $get ($location, $http) {
+  $get ($location, $q, $http) {
     'ngInject'
-    return new VersionsService($location, $http, this.currentVersion)
+    return new VersionsService($location, $q, $http, this.currentVersion)
   }
 }
