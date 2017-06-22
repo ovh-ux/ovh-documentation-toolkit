@@ -1,8 +1,8 @@
+# OVH Documentation toolkit
+
 ![OVH component](githubBanner.png)
 
 ![Project status alpha](https://img.shields.io/badge/status-alpha-blue.svg) [![Github tag](https://img.shields.io/github/tag/ovh-ux/ovh-documentation-toolkit.svg)]() ![Maintenance](https://img.shields.io/maintenance/yes/2017.svg) [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
-
-# OVH Documentation toolkit
 
 This project provides some tools to quickly and simply build a documentation application based on AngularJS.
 
