@@ -11,7 +11,7 @@ export default class {
       .then((versions) => {
         this.versions = versions.map((version) => {
           if (version === 'latest') {
-            return { name: 'latest', id: 'master' }
+            return { name: 'latest', id: 'latest' }
           }
 
           return { name: version, id: snakeCase(version) }
