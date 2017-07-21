@@ -10,7 +10,7 @@ export default class {
     Versions.getVersions()
       .then((versions) => {
         this.versions = versions.map((version) => {
-          if (version === 'latest') {
+          if (version === 'master') {
             return { name: 'latest', id: 'latest' }
           }
 
