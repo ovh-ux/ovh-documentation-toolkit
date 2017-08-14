@@ -24,15 +24,21 @@
     <div class="oui-showcase__content">
       <nav class="oui-theme-sapphire oui-list oui-list_nav oui-showcase__sidenav" role="complementary" data-ng-class="{'open': $ctrl.toggle}">
         <ul class="oui-list__items">
-          <li class="oui-list__items oui-list__items_group">
-            <span class="oui-list__header" data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].name"></span>
+          <li class="oui-list__items oui-list__items_group"
+              data-ng-repeat="groupKey in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groupsOrder track by $index">
+            <span class="oui-list__header"
+                  data-ng-if="groupKey === 'undefined'"
+                  data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].name"></span>
+            <span class="oui-list__header"
+                  data-ng-if="groupKey !== 'undefined'"
+                  data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groups[groupKey].name || groupKey"></span>
             <ul class="oui-list__items">
               <li class="oui-list__item"
-                  data-ng-repeat="child in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].children track by child.state"
+                  data-ng-repeat="child in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].children[groupKey] track by child.state"
                   data-ui-sref-active="oui-list__item_current">
                 <button type="button" class="oui-list__link" data-ng-click="$ctrl.onListItemClick(child.state)" data-ng-bind="child.name"></button>
               </li>
-              <li class="oui-list__item" data-ng-if="!$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].children.length">
+              <li class="oui-list__item" data-ng-if="!$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groupsOrder.length">
                 No children state found under the state {{ $ctrl.currentSecondLevelStateName }}.
               </li>
             </ul>

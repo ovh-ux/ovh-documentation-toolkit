@@ -28,17 +28,36 @@ export default class {
     childrenState = _.map(childrenState, (childState) => {
       return {
         state: childState.name,
-        name: _.get(childState, 'friendlyName', `<unnamed state: ${childState.name}>`)
+        name: _.get(childState, 'friendlyName', `<unnamed state: ${childState.name}>`),
+        groups: _.get(childState, 'groups'),
+        group: _.get(childState, 'group')
       }
     })
     return childrenState
   }
 
+  getOrderedAndGroupedChildrenState (stateName) {
+    return _.groupBy(this.getOrderedChildrenState(stateName), 'group')
+  }
+
+  getGroupsOrder (orderedAndGroupedChildrenState, groupsDetails) {
+    let keys = Object.keys(orderedAndGroupedChildrenState)
+
+    return _.orderBy(keys, groupName => {
+      return groupName === 'undefined' ? -9999 : -1 * _.get(groupsDetails, [groupName, 'weight'], 0)
+    })
+  }
+
   getSecondLevelsChildren () {
     let secondLevelsChildren = _.map(this.rootChildren, (rootChild) => {
+      const orderedAndGroupedChildrenState = this.getOrderedAndGroupedChildrenState(rootChild.state)
+      const groupsDetails = _.get(rootChild, 'groups')
+
       return [rootChild.state, {
         name: this.getSecondLevelGroupName(rootChild.state),
-        children: this.getOrderedChildrenState(rootChild.state)
+        children: orderedAndGroupedChildrenState,
+        groupsOrder: this.getGroupsOrder(orderedAndGroupedChildrenState, groupsDetails),
+        groups: groupsDetails
       }]
     })
     secondLevelsChildren = _.fromPairs(secondLevelsChildren)
