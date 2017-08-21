@@ -44,6 +44,9 @@ export default class {
     let keys = Object.keys(orderedAndGroupedChildrenState)
 
     return _.orderBy(keys, groupName => {
+      // The -9999 weigth is arbitrary, it is only to keep the
+      // ungrouped element at the beginning of the list so the
+      // user can use negative and positive values.
       return groupName === 'undefined' ? -9999 : -1 * _.get(groupsDetails, [groupName, 'weight'], 0)
     })
   }
