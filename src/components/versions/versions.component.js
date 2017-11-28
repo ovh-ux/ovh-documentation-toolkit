@@ -1,7 +1,7 @@
-import template from './versions.html'
-import controller from './versions.controller'
+import controller from "./versions.controller";
+import template from "./versions.html";
 
 export default {
-  template,
-  controller
-}
+    template,
+    controller
+};

@@ -1,30 +1,30 @@
 class ComponentStatusService {
-  constructor (readmeUrl, findMessageTypeFunc) {
-    this.readmeUrl = readmeUrl
-    this.findMessageTypeFunc = findMessageTypeFunc
-  }
+    constructor (readmeUrl, findMessageTypeFunc) {
+        this.readmeUrl = readmeUrl;
+        this.findMessageTypeFunc = findMessageTypeFunc;
+    }
 
-  getReadmeUrl () {
-    return this.readmeUrl
-  }
+    getReadmeUrl () {
+        return this.readmeUrl;
+    }
 }
 
 export default class {
-  constructor () {
-    'ngInject'
+    constructor () {
+        "ngInject";
 
-    this.readmeUrl = []
-  }
+        this.readmeUrl = [];
+    }
 
-  setReadmeUrl (readmeUrl) {
-    this.readmeUrl = readmeUrl
-  }
+    setReadmeUrl (readmeUrl) {
+        this.readmeUrl = readmeUrl;
+    }
 
-  setFindMessageTypeFunc (findMessageTypeFunc) {
-    this.findMessageTypeFunc = findMessageTypeFunc
-  }
+    setFindMessageTypeFunc (findMessageTypeFunc) {
+        this.findMessageTypeFunc = findMessageTypeFunc;
+    }
 
-  $get () {
-    return new ComponentStatusService(this.readmeUrl, this.findMessageTypeFunc)
-  }
+    $get () {
+        return new ComponentStatusService(this.readmeUrl, this.findMessageTypeFunc);
+    }
 }

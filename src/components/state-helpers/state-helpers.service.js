@@ -1,28 +1,28 @@
-import { includes } from 'lodash'
+import { includes } from "lodash";
 
 export default class {
-  constructor ($state) {
-    'ngInject'
+    constructor ($state) {
+        "ngInject";
 
-    this.$state = $state
-  }
+        this.$state = $state;
+    }
 
-  getChildren (stateName, firstLevelOnly = true) {
-    var prefixToFind = stateName + '.'
+    getChildren (stateName, firstLevelOnly = true) {
+        const prefixToFind = `${stateName}.`;
 
-    return this.$state.get().filter(function (state) {
-      if (includes(state.name, prefixToFind)) {
-        if (firstLevelOnly) {
-          var stateNameWithoutPrefix = state.name.replace(prefixToFind, '')
+        return this.$state.get().filter((state) => {
+            if (includes(state.name, prefixToFind)) {
+                if (firstLevelOnly) {
+                    const stateNameWithoutPrefix = state.name.replace(prefixToFind, "");
 
-          // Exclude all subs states, only take the first child level
-          return !includes(stateNameWithoutPrefix, '.')
-        } else {
-          return true
-        }
-      }
+                    // Exclude all subs states, only take the first child level
+                    return !includes(stateNameWithoutPrefix, ".");
+                }
 
-      return false
-    })
-  }
+                return true;
+            }
+
+            return false;
+        });
+    }
 }
