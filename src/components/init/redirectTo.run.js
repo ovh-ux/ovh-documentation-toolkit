@@ -1,10 +1,10 @@
 export default function ($rootScope, $state) {
-  'ngInject'
+    "ngInject";
 
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    if (toState.redirectTo) {
-      event.preventDefault()
-      $state.go(toState.redirectTo, toParams, { location: 'replace' })
-    }
-  })
+    $rootScope.$on("$stateChangeStart", (event, toState, toParams) => {
+        if (toState.redirectTo) {
+            event.preventDefault();
+            $state.go(toState.redirectTo, toParams, { location: "replace" });
+        }
+    });
 }
