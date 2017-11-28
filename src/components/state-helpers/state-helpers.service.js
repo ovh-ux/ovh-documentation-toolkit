@@ -15,11 +15,11 @@ export default class {
                 if (firstLevelOnly) {
                     const stateNameWithoutPrefix = state.name.replace(prefixToFind, "");
 
-          // Exclude all subs states, only take the first child level
+                    // Exclude all subs states, only take the first child level
                     return !includes(stateNameWithoutPrefix, ".");
                 }
-                return true;
 
+                return true;
             }
 
             return false;
