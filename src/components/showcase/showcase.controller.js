@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-export default class {
+export default class ShowcaseController {
     constructor ($rootScope, $state, StateHelpers) {
         "ngInject";
 
@@ -36,7 +36,7 @@ export default class {
         return _.groupBy(this.getOrderedChildrenState(stateName), "group");
     }
 
-    getGroupsOrder (orderedAndGroupedChildrenState, groupsDetails) {
+    static getGroupsOrder (orderedAndGroupedChildrenState, groupsDetails) {
         const keys = Object.keys(orderedAndGroupedChildrenState);
         return _.orderBy(keys, groupName =>
 
@@ -55,7 +55,7 @@ export default class {
             return [rootChild.state, {
                 name: this.getSecondLevelGroupName(rootChild.state),
                 children: orderedAndGroupedChildrenState,
-                groupsOrder: this.getGroupsOrder(orderedAndGroupedChildrenState, groupsDetails),
+                groupsOrder: ShowcaseController.getGroupsOrder(orderedAndGroupedChildrenState, groupsDetails),
                 groups: groupsDetails
             }];
         });
@@ -63,7 +63,7 @@ export default class {
         return secondLevelsChildren;
     }
 
-    getSecondLevelStateName (stateName) {
+    static getSecondLevelStateName (stateName) {
         let secondLevelStateName = _.split(stateName, ".");
         secondLevelStateName = _.take(secondLevelStateName, 2);
         secondLevelStateName = _.join(secondLevelStateName, ".");
@@ -71,7 +71,7 @@ export default class {
     }
 
     getCurrentSecondLevelStateName () {
-        return this.getSecondLevelStateName(this.$state.current.name);
+        return ShowcaseController.getSecondLevelStateName(this.$state.current.name);
     }
 
     getSecondLevelGroupName (stateName) {
@@ -79,7 +79,7 @@ export default class {
     }
 
     updateSecondLevelInformation (state) {
-        this.secondLevelRootState = this.getSecondLevelStateName(state.name);
+        this.secondLevelRootState = ShowcaseController.getSecondLevelStateName(state.name);
         this.secondLevelRootStateNoChildrenMessage = `No children found under state ${this.secondLevelRootState}`;
         this.secondLevelGroupName = this.getSecondLevelGroupName(this.secondLevelRootState);
     }
