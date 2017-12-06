@@ -1,23 +1,50 @@
 // oui-showcase
 .oui-showcase__navbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  height: 60px;
   user-select: none;
+
+  .oui-select {
+    margin: 0 rem-calc(15);
+  }
+
+  .oui-navbar__title-icon {
+    vertical-align: top;
+    font-size: rem-calc(44);
+    color: inherit;
+  }
+
+  .oui-navbar__title-bold,
+  .oui-navbar__title-small {
+    display: inline-block;
+    font-size: rem-calc(28);
+    color: #fff;
+  }
+
+  .oui-navbar__title-bold {
+    margin-left: rem-calc(15);
+    font-weight: 600;
+  }
+
+  .oui-navbar__title-small {
+    margin-left: rem-calc(2);
+    font-weight: 300;
+  }
 }
 
-.oui-showcase__content {
+.oui-showcase__header {
+  z-index: 1;
   position: relative;
-  top: 60px;
+}
+
+.oui-showcase__main {
+  display: block;
+  padding-top: rem-calc(44);
+  position: relative;
+  z-index: 0;
 }
 
 .oui-showcase__sidenav {
   position: fixed;
-  top: 60px;
+  top: rem-calc(44);
   bottom: 0;
   left: 0;
   width: 220px;
