@@ -1,22 +1,26 @@
 <section>
   <header class="oui-theme-sapphire">
-    <nav class="oui-navbar oui-showcase__navbar" role="navigation">
-      <a class="oui-navbar__title-link" href="#">
-        <h1 class="oui-navbar__title">
-          <i class="oui-icon oui-icon-ovh"></i>
-          <span class="oui-navbar__title-bold">OVH</span>
-          <span class="oui-navbar__title-small">UIKit</span>
-        </h1>
+    <nav class="oui-navbar oui-navbar_fixed oui-showcase__navbar" role="navigation">
+      <button type="button" class="oui-navbar-toggler" data-ng-click="$ctrl.toggle = !$ctrl.toggle"
+        aria-haspopup="true" aria-expanded="{{$ctrl.toggle}}">
+        <span class="oui-navbar-toggler-hamburger">
+          <span></span><span></span><span></span><span></span>
+        </span>
+      </button>
+      <a class="oui-navbar__brand" href="#">
+        <i class="oui-icon oui-icon-ovh oui-navbar__title-icon"></i>
+        <span class="oui-navbar__title-bold">OVH</span>
+        <span class="oui-navbar__title-small">UIKit</span>
       </a>
-      <button type="button" class="oui-showcase__control" data-ng-click="$ctrl.toggle = !$ctrl.toggle">Menu</button>
-      <ul class="oui-navbar__items" data-ng-class="{'open': $ctrl.toggle}">
-        <li class="oui-navbar__item" data-ng-repeat="child in $ctrl.rootChildren track by child.state" data-ui-sref-active="oui-navbar__item_current">
-          <button type="button" class="oui-navbar__link" data-ng-click="$ctrl.onListItemClick(child.state)" data-ng-bind="child.name"></button>
-        </li>
-        <li class="oui-navbar__item">
-          <versions-selector></versions-selector>
+      <ul class="oui-navbar-list oui-navbar-list_end">
+        <li class="oui-navbar-list__item" data-ng-repeat="child in $ctrl.rootChildren track by child.state">
+          <button type="button" class="oui-navbar-link"
+            data-ng-click="$ctrl.onListItemClick(child.state)"
+            data-ui-sref-active="oui-navbar-link_active"
+            data-ng-bind="child.name"></button>
         </li>
       </ul>
+      <versions-selector></versions-selector>
     </nav>
   </header>
 
