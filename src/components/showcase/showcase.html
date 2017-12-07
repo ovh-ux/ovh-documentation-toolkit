@@ -3,7 +3,7 @@
     <nav class="oui-navbar oui-navbar_fixed oui-showcase__navbar" role="navigation">
       <button type="button" class="oui-navbar-toggler" data-ng-click="$ctrl.toggle = !$ctrl.toggle"
         aria-haspopup="true" aria-expanded="{{$ctrl.toggle}}">
-        <span class="oui-navbar-toggler-hamburger">
+        <span class="oui-navbar-toggler__hamburger">
           <span></span><span></span><span></span><span></span>
         </span>
       </button>
@@ -12,15 +12,15 @@
         <span class="oui-navbar__title-bold">OVH</span>
         <span class="oui-navbar__title-small">UIKit</span>
       </a>
-      <ul class="oui-navbar-list oui-navbar-list_end">
+      <ul class="oui-navbar-list oui-navbar-list_end oui-navbar_desktop-only">
         <li class="oui-navbar-list__item" data-ng-repeat="child in $ctrl.rootChildren track by child.state">
-          <button type="button" class="oui-navbar-link"
+          <button type="button" class="oui-navbar-link oui-navbar-link_primary"
             data-ng-click="$ctrl.onListItemClick(child.state)"
             data-ui-sref-active="oui-navbar-link_active"
             data-ng-bind="child.name"></button>
         </li>
       </ul>
-      <versions-selector></versions-selector>
+      <versions-selector class="oui-navbar_desktop-only"></versions-selector>
     </nav>
   </header>
 
