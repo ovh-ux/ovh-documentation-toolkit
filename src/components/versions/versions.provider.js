@@ -1,4 +1,4 @@
-import { snakeCase } from "lodash";
+import { includes, snakeCase } from "lodash";
 
 class VersionsService {
     constructor ($location, $q, $http, currentVersion) {
@@ -70,7 +70,7 @@ class VersionsService {
             .then((versions) => {
                 const formattedVersions = versions.map(snakeCase);
 
-                if (formattedVersions.includes(informations.version)) {
+                if (includes(formattedVersions, informations.version)) {
                     return versions;
                 }
 
