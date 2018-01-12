@@ -7,7 +7,8 @@
   "module": "src/app/index.js",
   "scripts": {
     "build": "rimraf dist && webpack --progress --colors --hide-modules --config ./build/webpack.config.babel.js",
-    "build:watch": "rimraf dist && webpack --progress --colors --hide-modules --config ./build/webpack.config.babel.js --watch"
+    "build:watch": "rimraf dist && webpack --progress --colors --hide-modules --config ./build/webpack.config.babel.js --watch",
+    "test": "echo \"no tests for this project\""
   },
   "devDependencies": {
     "babel-cli": "~6.24.1",
