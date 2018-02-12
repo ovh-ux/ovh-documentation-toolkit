@@ -10,18 +10,18 @@ import Versions from "../components/versions/versions.component";
 import VersionsProvider from "../components/versions/versions.provider";
 
 const ovhDocumentationToolkitModule = angular
-  .module("ovh-documentation-toolkit", [
-      "ui.router"
-  ])
-  .component("showcaseUi", Showcase)
-  .service("StateHelpers", StateHelpers)
-  .provider("Versions", VersionsProvider)
-  .component("versionsSelector", Versions)
-  .provider("Themes", ThemesProvider)
-  .component("themesSelector", Themes)
-  .provider("ComponentStatus", ComponentStatusProvider)
-  .component("componentStatus", ComponentStatus)
-  .config(rootRoutes)
-  .run(redirectToInit);
+    .module("ovh-documentation-toolkit", [
+        "ui.router"
+    ])
+    .component("showcaseUi", Showcase)
+    .service("StateHelpers", StateHelpers)
+    .provider("Versions", VersionsProvider)
+    .component("versionsSelector", Versions)
+    .provider("Themes", ThemesProvider)
+    .component("themesSelector", Themes)
+    .provider("ComponentStatus", ComponentStatusProvider)
+    .component("componentStatus", ComponentStatus)
+    .config(rootRoutes)
+    .run(redirectToInit);
 
 export default ovhDocumentationToolkitModule;
