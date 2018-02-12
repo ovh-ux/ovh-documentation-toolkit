@@ -21,7 +21,5 @@ module.exports = {
         "no-magic-numbers": ["error", {
             "ignore": [0, -1, 1, 2, 3]
         }]
-    },
-    "no-console": isDistribution ? 2 : 0,
-    "no-debugger": isDistribution ? 2 : 0
+    }
 }
