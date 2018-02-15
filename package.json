@@ -6,6 +6,8 @@
   "main": "dist/ovh-documentation-toolkit.js",
   "module": "src/app/index.js",
   "scripts": {
+    "preversion": "npm build && git add dist",
+    "postversion": "git push && git push --tags",
     "build": "rimraf dist && webpack --progress --colors --hide-modules --config ./build/webpack.config.babel.js",
     "build:watch": "rimraf dist && webpack --progress --colors --hide-modules --config ./build/webpack.config.babel.js --watch",
     "test": "echo \"no tests for this project\""
