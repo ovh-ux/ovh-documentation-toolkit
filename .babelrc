@@ -1,5 +1,11 @@
 {
-  "presets": ["es2015"],
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 9 versions", "ie >= 10"]
+      }
+    }]
+  ],
   "plugins": ["lodash", "transform-runtime"],
   "comments": false
 }
