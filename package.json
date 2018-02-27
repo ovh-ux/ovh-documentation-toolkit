@@ -1,6 +1,6 @@
 {
   "name": "ovh-documentation-toolkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An AngularJS documentation app foundation.",
   "license": "BSD-3-Clause",
   "main": "dist/ovh-documentation-toolkit.js",
