@@ -1,19 +1,20 @@
-# Changelog
+<a name="1.0.0"></a>
+# [1.0.0]
 
-## v1.0.0
+### Features
 
-### New components
+new components:
 - `versions`
 - `themes`
 - `showcase-ui`
 - `component-status`
 
-### New providers
+new providers:
 - `ComponentStatusProvider`
 - `ThemesProvider`
 - `VersionsProvider`
 
-### New services
+new services:
 - `ComponentStatus`
 - `Themes`
 - `Versions`
