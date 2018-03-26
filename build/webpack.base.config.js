@@ -25,7 +25,11 @@ export default {
       'process.env': process.env.NODE_ENV
     }),
     new webpack.NoEmitOnErrorsPlugin,
-    new LodashModuleReplacementPlugin,
+    new LodashModuleReplacementPlugin({
+        shorthands: true,
+        collections: true,
+        paths: true
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
