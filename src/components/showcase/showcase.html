@@ -1,27 +1,14 @@
 <section>
   <header class="oui-theme-sapphire">
-    <nav class="oui-navbar oui-navbar_fixed oui-showcase__navbar" role="navigation">
-      <button type="button" class="oui-navbar-toggler" data-ng-click="$ctrl.toggle = !$ctrl.toggle"
-        aria-haspopup="true" aria-expanded="{{$ctrl.toggle}}">
-        <span class="oui-navbar-toggler__hamburger">
-          <span></span><span></span><span></span><span></span>
-        </span>
-      </button>
-      <a class="oui-navbar__brand" href="#">
-        <i class="oui-icon oui-icon-ovh oui-navbar__title-icon"></i>
-        <span class="oui-navbar__title-bold">OVH</span>
-        <span class="oui-navbar__title-small">UIKit</span>
-      </a>
-      <ul class="oui-navbar-list oui-navbar-list_end oui-navbar_desktop-only">
-        <li class="oui-navbar-list__item" data-ng-repeat="child in $ctrl.rootChildren track by child.state">
-          <button type="button" class="oui-navbar-link oui-navbar-link_primary"
-            data-ng-click="$ctrl.onListItemClick(child.state)"
-            data-ui-sref-active="oui-navbar-link_active"
-            data-ng-bind="child.name"></button>
-        </li>
-      </ul>
-      <versions-selector class="oui-navbar_desktop-only"></versions-selector>
-    </nav>
+    <oui-navbar
+        fixed
+        brand="{
+            title: 'OVH UIKit',
+            url: '#',
+            iconClass: 'oui-icon oui-icon-ovh'
+        }"
+        main-links="$ctrl.mainLinks">
+    </oui-navbar>
   </header>
 
   <content class="oui-showcase__main">
@@ -51,7 +38,7 @@
       </nav>
       <div class="oui-showcase__section">
         <themes-selector class="oui-showcase__theme-selector" on-change="$ctrl.theme = $event.value"></themes-selector>
-        <ui-view data-ng-class="$ctrl.theme"></ui-view>
+        <ui-view data-ng-class="$ctrl.theme" class="oui-showcase__section-content"></ui-view>
       </div>
     </div>
   </content>
