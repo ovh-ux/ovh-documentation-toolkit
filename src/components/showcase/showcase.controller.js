@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 export default class ShowcaseController {
-    constructor ($rootScope, $state, StateHelpers) {
+    constructor ($rootScope, $state, $transitions, StateHelpers) {
         "ngInject";
 
         this.$state = $state;
@@ -12,9 +12,53 @@ export default class ShowcaseController {
         this.secondLevelsChildren = this.getSecondLevelsChildren();
         this.currentSecondLevelStateName = this.getCurrentSecondLevelStateName();
 
-        this.stateChangeSuccessHandler = $rootScope.$on("$stateChangeSuccess", () => {
-            this.currentSecondLevelStateName = this.getCurrentSecondLevelStateName();
+        this.mainLinks = [];
+
+        this.mainLinks.push(...this.rootChildren.map(rootChild => ({
+            name: rootChild.state,
+            title: rootChild.name,
+            isPrimary: true,
+            url: $state.href(rootChild.state)
+        })));
+
+        this.mainLinks.forEach(link => {
+            const state = link.name;
+            const subLinks = [];
+
+            if (!state || !this.secondLevelsChildren[state]) {
+                return;
+            }
+
+            if (this.secondLevelsChildren[state].children.undefined) {
+                subLinks.push(...this.getLinks(state, "undefined"));
+            }
+
+            (this.secondLevelsChildren[state].groupsOrder || []).forEach(groupName => {
+                if (groupName === "undefined") {
+                    return;
+                }
+
+                subLinks.push({
+                    name: `${state}_${groupName}`,
+                    title: this.secondLevelsChildren[state].groups[groupName].name,
+                    subLinks: this.getLinks(state, groupName)
+                });
+            });
+
+            link.subLinks = subLinks;
         });
+
+        $transitions.onStart({}, trans => {
+            this.currentSecondLevelStateName = ShowcaseController.getSecondLevelStateName(trans.$to().name);
+        });
+    }
+
+    getLinks (state, groupName) {
+        return this.secondLevelsChildren[state].children[groupName].map(link => ({
+            name: link.state,
+            title: link.name,
+            state: link.state
+        }));
     }
 
     $onDestroy () {

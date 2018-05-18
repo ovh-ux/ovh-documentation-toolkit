@@ -11,7 +11,8 @@ import VersionsProvider from "../components/versions/versions.provider";
 
 const ovhDocumentationToolkitModule = angular
     .module("ovh-documentation-toolkit", [
-        "ui.router"
+        "ui.router",
+        "oui"
     ])
     .component("showcaseUi", Showcase)
     .service("StateHelpers", StateHelpers)
