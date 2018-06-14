@@ -127,9 +127,4 @@ export default class ShowcaseController {
         this.secondLevelRootStateNoChildrenMessage = `No children found under state ${this.secondLevelRootState}`;
         this.secondLevelGroupName = this.getSecondLevelGroupName(this.secondLevelRootState);
     }
-
-    onListItemClick (stateName) {
-        this.toggle = false;
-        this.$state.go(stateName);
-    }
 }

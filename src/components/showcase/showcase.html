@@ -1,7 +1,8 @@
 <section>
-  <header class="oui-theme-sapphire">
+  <header>
     <oui-navbar
         fixed
+        active-link="{{$ctrl.currentSecondLevelStateName}}"
         brand="{
             title: 'OVH UIKit',
             url: '#',
@@ -13,21 +14,24 @@
 
   <content class="oui-showcase__main">
     <div class="oui-showcase__content">
-      <nav class="oui-theme-sapphire oui-list oui-list_nav oui-showcase__sidenav" role="complementary" data-ng-class="{'open': $ctrl.toggle}">
+      <nav class="oui-list oui-list_nav oui-showcase__sidenav" role="complementary">
         <ul class="oui-list__items">
-          <li class="oui-list__items oui-list__items_group"
-              data-ng-repeat="groupKey in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groupsOrder track by $index">
+          <li class="oui-list__group"
+            data-ng-repeat="groupKey in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groupsOrder track by $index">
             <span class="oui-list__header"
-                  data-ng-if="groupKey === 'undefined'"
-                  data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].name"></span>
+                data-ng-if="groupKey === 'undefined'"
+                data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].name"></span>
             <span class="oui-list__header"
-                  data-ng-if="groupKey !== 'undefined'"
-                  data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groups[groupKey].name || groupKey"></span>
-            <ul class="oui-list__items">
-              <li class="oui-list__item"
-                  data-ng-repeat="child in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].children[groupKey] track by child.state"
-                  data-ui-sref-active="oui-list__item_current">
-                <button type="button" class="oui-list__link" data-ng-click="$ctrl.onListItemClick(child.state)" data-ng-bind="child.name"></button>
+                data-ng-if="groupKey !== 'undefined'"
+                data-ng-bind="$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groups[groupKey].name || groupKey"></span>
+            <ul class="oui-list__sub-items">
+              <li class="oui-list__sub-item"
+                    data-ng-repeat="child in $ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].children[groupKey] track by child.state"
+                    data-ui-sref-active="oui-list__item_current">
+                <button type="button" class="oui-list__link"
+                    data-ng-bind="child.name"
+                    data-ui-sref="{{child.state}}">
+                </button>
               </li>
               <li class="oui-list__item" data-ng-if="!$ctrl.secondLevelsChildren[$ctrl.currentSecondLevelStateName].groupsOrder.length">
                 No children state found under the state {{ $ctrl.currentSecondLevelStateName }}.
@@ -38,7 +42,10 @@
       </nav>
       <div class="oui-showcase__section">
         <themes-selector class="oui-showcase__theme-selector" on-change="$ctrl.theme = $event.value"></themes-selector>
-        <ui-view data-ng-class="$ctrl.theme" class="oui-showcase__section-content"></ui-view>
+        <ui-view class="oui-showcase__section-content"
+            ng-class="$ctrl.theme"
+            autoscroll="true">
+        </ui-view>
       </div>
     </div>
   </content>
