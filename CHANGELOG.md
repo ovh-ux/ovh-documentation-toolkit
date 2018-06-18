@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.1.0...v1.1.1) (2018-06-18)
+
+
+### Bug Fixes
+
+* fix showcase navigation ([a90e18a](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/a90e18a))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.0.1...v1.1.0) (2018-05-18)
 
