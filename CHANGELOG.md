@@ -1,3 +1,19 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.1.1...v1.1.2) (2018-07-31)
+
+
+### Bug Fixes
+
+* fix showcase navigation ([c051fbe](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/c051fbe))
+* fix sidebar links ([4aa9ae5](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/4aa9ae5))
+
+
+### Features
+
+* use new navbar ([#27](https://github.com/ovh-ux/ovh-documentation-toolkit/issues/27)) ([2aa3785](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/2aa3785))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.1.0...v1.1.1) (2018-06-18)
 
