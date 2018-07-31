@@ -4,13 +4,7 @@
 
 ### Bug Fixes
 
-* fix showcase navigation ([c051fbe](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/c051fbe))
 * fix sidebar links ([4aa9ae5](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/4aa9ae5))
-
-
-### Features
-
-* use new navbar ([#27](https://github.com/ovh-ux/ovh-documentation-toolkit/issues/27)) ([2aa3785](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/2aa3785))
 
 
 
