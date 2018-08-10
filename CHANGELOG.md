@@ -1,3 +1,13 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.1.1...v1.1.2) (2018-07-31)
+
+
+### Bug Fixes
+
+* fix sidebar links ([4aa9ae5](https://github.com/ovh-ux/ovh-documentation-toolkit/commit/4aa9ae5))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.1.0...v1.1.1) (2018-06-18)
 
