@@ -6,6 +6,10 @@
       }
     }]
   ],
-  "plugins": ["lodash", "transform-runtime"],
+  "plugins": [
+    ["angularjs-annotate", { "explicitOnly" : true }],
+    "lodash",
+    "transform-runtime"
+  ],
   "comments": false
 }
