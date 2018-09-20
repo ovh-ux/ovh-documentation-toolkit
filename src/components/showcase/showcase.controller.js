@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 export default class ShowcaseController {
-    constructor ($rootScope, $state, $transitions, StateHelpers) {
+    constructor ($state, $transitions, StateHelpers) {
         "ngInject";
 
         this.$state = $state;
@@ -10,6 +10,7 @@ export default class ShowcaseController {
 
         this.rootChildren = this.getOrderedChildrenState(this.rootState);
         this.secondLevelsChildren = this.getSecondLevelsChildren();
+        this.currentItemExpanded = 0;
         this.currentSecondLevelStateName = this.getCurrentSecondLevelStateName();
 
         this.mainLinks = [];
