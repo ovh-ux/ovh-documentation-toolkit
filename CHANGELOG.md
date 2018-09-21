@@ -1,3 +1,8 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.1.2...v1.2.0) (2018-09-20)
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/ovh-ux/ovh-documentation-toolkit/compare/v1.1.1...v1.1.2) (2018-07-31)
 
